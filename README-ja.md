@@ -1,14 +1,12 @@
-## Supported tags and respective `Dockerfile` links:
+## 有効なタグと、そのビルドに使われている `Dockerfile`
 
 ・latest ([versions/latest/Dockerfile](https://github.com/pottava/dockerized-ecr-credential-helper/blob/master/versions/latest/Dockerfile))
 
-([日本語はこちら](https://github.com/pottava/dockerized-ecr-credential-helper/blob/master/README-ja.md))
+# インストール
 
-# Installation
+## 1. ヘルパーの挙動を確認します
 
-## 1. Test this helper's behavior
-
-* Case 1: with EC2 instance profile  
+* Case 1: EC2 インスタンスロールを使う場合  
 
 ```
 docker run --rm -e METHOD=get \
@@ -16,7 +14,7 @@ docker run --rm -e METHOD=get \
   pottava/amazon-ecr-credential-helper
 ```
 
-* Case 2: with environment variables  
+* Case 2: 環境変数を使う場合  
 
 ```
 docker run --rm -e METHOD=get \
@@ -26,7 +24,7 @@ docker run --rm -e METHOD=get \
   pottava/amazon-ecr-credential-helper
 ```
 
-* Case 3: with AWS credentials  
+* Case 3: クレデンシャルファイルを使う場合  
 
 ```
 docker run --rm -e METHOD=get \
@@ -35,9 +33,9 @@ docker run --rm -e METHOD=get \
   pottava/amazon-ecr-credential-helper
 ```
 
-## 2. Place a shell script on your $PATH
+## 2. $PATH の通っているフォルダにスクリプトを設置 
 
-* Case 1: with EC2 instance profile  
+* Case 1: EC2 インスタンスロールを使う場合  
 
 ```
 sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
@@ -50,7 +48,7 @@ EOF'
 sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
 
-* Case 2: with environment variables  
+* Case 2: 環境変数を使う場合  
 
 ```
 sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
@@ -65,7 +63,7 @@ EOF'
 sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
 
-* Case 3: with AWS credentials  
+* Case 3: クレデンシャルファイルを使う場合  
 
 ```
 sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
@@ -79,7 +77,7 @@ EOF'
 sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
 
-## 3. Set contents of your ~/.docker/config.json to be:
+## 3. ~/.docker/config.json に以下の値をセット
 
 ```
 {
@@ -87,15 +85,16 @@ sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 }
 ```
 
-# Usage
+# 使い方
 
-Set environment variables if you needed.  
+環境変数を使う場合は、そのセット。  
 ```
 export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
-There is no need to use `eval "$(aws ecr get-login)"`.  
+次のコマンドは使う必要はありません: `eval "$(aws ecr get-login)"`.  
+docker push や pull が通常通り利用できます。
 
 - docker push  
 `docker push 123457689012.dkr.ecr.us-east-1.amazonaws.com/my-repo:tag`
