@@ -40,10 +40,11 @@ docker run --rm -e METHOD=get \
 ```
 sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
 #!/bin/sh
-docker run --rm \\
+SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
   -e REGISTRY=\$(cat -) \\
-  pottava/amazon-ecr-credential-helper
+  pottava/amazon-ecr-credential-helper)
+echo \$SECRET | grep Secret
 EOF'
 sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
@@ -53,12 +54,13 @@ sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
 sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
 #!/bin/sh
-docker run --rm \\
+SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
   -e REGISTRY=\$(cat -) \\
   -e AWS_ACCESS_KEY_ID \\
   -e AWS_SECRET_ACCESS_KEY \\
-  pottava/amazon-ecr-credential-helper
+  pottava/amazon-ecr-credential-helper)
+echo \$SECRET | grep Secret
 EOF'
 sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
@@ -68,11 +70,12 @@ sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
 sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
 #!/bin/sh
-docker run --rm \\
+SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
   -e REGISTRY=\$(cat -) \\
   -v $HOME/.aws/credentials:/root/.aws/credentials \\
-  pottava/amazon-ecr-credential-helper
+  pottava/amazon-ecr-credential-helper)
+echo \$SECRET | grep Secret
 EOF'
 sudo chmod +x /usr/local/bin/docker-credential-ecr-login
 ```
