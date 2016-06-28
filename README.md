@@ -1,5 +1,6 @@
-Supported tags and respective `Dockerfile` links:
-・latest ([versions/latest/Dockerfile](https://github.com/pottava/amazon-ecr-credential-helper/blob/master/versions/latest/Dockerfile))
+## Supported tags and respective `Dockerfile` links:
+
+・latest ([versions/latest/Dockerfile](https://github.com/pottava/dockerized-ecr-credential-helper/blob/master/versions/latest/Dockerfile))
 
 # Installation
 
