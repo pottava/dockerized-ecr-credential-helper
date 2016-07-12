@@ -38,7 +38,7 @@ docker run --rm -e METHOD=get \
 * Case 1: EC2 インスタンスロールを使う場合  
 
 ```
-sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
+sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
 SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
@@ -46,13 +46,13 @@ SECRET=\$(docker run --rm \\
   pottava/amazon-ecr-credential-helper)
 echo \$SECRET | grep Secret
 EOF'
-sudo chmod +x /usr/local/bin/docker-credential-ecr-login
+sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
 
 * Case 2: 環境変数を使う場合  
 
 ```
-sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
+sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
 SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
@@ -62,13 +62,13 @@ SECRET=\$(docker run --rm \\
   pottava/amazon-ecr-credential-helper)
 echo \$SECRET | grep Secret
 EOF'
-sudo chmod +x /usr/local/bin/docker-credential-ecr-login
+sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
 
 * Case 3: クレデンシャルファイルを使う場合  
 
 ```
-sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
+sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
 SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
@@ -77,7 +77,7 @@ SECRET=\$(docker run --rm \\
   pottava/amazon-ecr-credential-helper)
 echo \$SECRET | grep Secret
 EOF'
-sudo chmod +x /usr/local/bin/docker-credential-ecr-login
+sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
 
 ## 3. ~/.docker/config.json に以下の値をセット

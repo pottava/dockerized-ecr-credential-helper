@@ -6,7 +6,7 @@ MAINTAINER @pottava
 
 ENV GOPATH=/go \
     PATH=/go/bin:$PATH \
-    APP_VERSION=52755cbe8fc048ae0e782c15a0f1daa231448ea5
+    APP_VERSION=77ede7e8c97aab375302fc8770a7a88a5a1af275
 
 RUN apk add --no-cache ca-certificates \
       && apk --no-cache add --virtual build-dependencies go git \

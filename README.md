@@ -40,7 +40,7 @@ docker run --rm -e METHOD=get \
 * Case 1: with EC2 instance profile  
 
 ```
-sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
+sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
 SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
@@ -48,13 +48,13 @@ SECRET=\$(docker run --rm \\
   pottava/amazon-ecr-credential-helper)
 echo \$SECRET | grep Secret
 EOF'
-sudo chmod +x /usr/local/bin/docker-credential-ecr-login
+sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
 
 * Case 2: with environment variables  
 
 ```
-sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
+sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
 SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
@@ -64,13 +64,13 @@ SECRET=\$(docker run --rm \\
   pottava/amazon-ecr-credential-helper)
 echo \$SECRET | grep Secret
 EOF'
-sudo chmod +x /usr/local/bin/docker-credential-ecr-login
+sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
 
 * Case 3: with AWS credentials  
 
 ```
-sudo bash -c 'cat << EOF > /usr/local/bin/docker-credential-ecr-login
+sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
 SECRET=\$(docker run --rm \\
   -e METHOD=\$1 \\
@@ -79,7 +79,7 @@ SECRET=\$(docker run --rm \\
   pottava/amazon-ecr-credential-helper)
 echo \$SECRET | grep Secret
 EOF'
-sudo chmod +x /usr/local/bin/docker-credential-ecr-login
+sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
 
 ## 3. Set contents of your ~/.docker/config.json to be:
