@@ -1,12 +1,11 @@
 # Amazon ECR credential-helper
 # @see https://github.com/awslabs/amazon-ecr-credential-helper
 
-FROM alpine:3.4
-MAINTAINER @pottava
+FROM alpine:3.5
 
 ENV GOPATH=/go \
     PATH=/go/bin:$PATH \
-    APP_VERSION=77ede7e8c97aab375302fc8770a7a88a5a1af275
+    APP_VERSION=1356db82f98febe5040241992f57f4d8fb599e26
 
 RUN apk add --no-cache ca-certificates \
       && apk --no-cache add --virtual build-dependencies go git \
