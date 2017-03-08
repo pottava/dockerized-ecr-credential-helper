@@ -9,7 +9,7 @@
 * Case 1: EC2 インスタンスロールを使う場合  
 
 ```
-docker run --rm -e METHOD=get \
+docker run --rm \
   -e REGISTRY=123457689012.dkr.ecr.us-east-1.amazonaws.com \
   pottava/amazon-ecr-credential-helper
 ```
@@ -17,7 +17,7 @@ docker run --rm -e METHOD=get \
 * Case 2: 環境変数を使う場合  
 
 ```
-docker run --rm -e METHOD=get \
+docker run --rm \
   -e REGISTRY=123457689012.dkr.ecr.us-east-1.amazonaws.com \
   -e AWS_ACCESS_KEY_ID \
   -e AWS_SECRET_ACCESS_KEY \
@@ -27,7 +27,7 @@ docker run --rm -e METHOD=get \
 * Case 3: クレデンシャルファイルを使う場合  
 
 ```
-docker run --rm -e METHOD=get \
+docker run --rm \
   -e REGISTRY=123457689012.dkr.ecr.us-east-1.amazonaws.com \
   -v $HOME/.aws/credentials:/root/.aws/credentials \
   pottava/amazon-ecr-credential-helper

@@ -11,7 +11,7 @@
 * Case 1: with EC2 instance profile  
 
 ```
-docker run --rm -e METHOD=get \
+docker run --rm \
   -e REGISTRY=123457689012.dkr.ecr.us-east-1.amazonaws.com \
   pottava/amazon-ecr-credential-helper
 ```
@@ -19,7 +19,7 @@ docker run --rm -e METHOD=get \
 * Case 2: with environment variables  
 
 ```
-docker run --rm -e METHOD=get \
+docker run --rm \
   -e REGISTRY=123457689012.dkr.ecr.us-east-1.amazonaws.com \
   -e AWS_ACCESS_KEY_ID \
   -e AWS_SECRET_ACCESS_KEY \
@@ -29,7 +29,7 @@ docker run --rm -e METHOD=get \
 * Case 3: with AWS credentials  
 
 ```
-docker run --rm -e METHOD=get \
+docker run --rm \
   -e REGISTRY=123457689012.dkr.ecr.us-east-1.amazonaws.com \
   -v $HOME/.aws/credentials:/root/.aws/credentials \
   pottava/amazon-ecr-credential-helper
