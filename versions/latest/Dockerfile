@@ -32,10 +32,12 @@ RUN apk --no-cache add --virtual build-dependencies bash gcc g++ musl-dev openss
     && git clone https://$APP_REPO $GOPATH/src/$APP_REPO \
     && cd $GOPATH/src/$APP_REPO \
     && git checkout $APP_VERSION \
-    && GOOS=linux CGO_ENABLED=0 go build -installsuffix cgo -a -ldflags '-s' \
-       -o /usr/bin/docker-credential-ecr-login ./ecr-login/cmd/ \
+    && GOOS=linux CGO_ENABLED=0 /usr/local/go/bin/go build -installsuffix cgo \
+       -a -ldflags '-s' -o /usr/bin/docker-credential-ecr-login \
+       ./ecr-login/cli/docker-credential-ecr-login \
 
     # Clean up
+    && cd / \
     && apk del --purge -r build-dependencies \
     && rm -rf /usr/local/go /usr/lib/go /go /golang.tar.gz /var/cache/* /var/lib/apk*
 
