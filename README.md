@@ -50,7 +50,12 @@ SECRET=\$(docker --config /dev/null run --rm \\
   -e METHOD=\$1 \\
   -e REGISTRY=\$(cat -) \\
   pottava/amazon-ecr-credential-helper:0.3)
-echo \$SECRET | grep Secret
+RESPONSE=\$(echo \$SECRET | grep Secret)
+if [ -z \$RESPONSE ]; then
+  echo "{\\"Username\\":\\"\\",\\"Secret\\":\\"\\"}"
+else
+  echo \$RESPONSE
+fi
 EOF'
 $ sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
@@ -66,7 +71,12 @@ SECRET=\$(docker --config /dev/null run --rm \\
   -e AWS_ACCESS_KEY_ID \\
   -e AWS_SECRET_ACCESS_KEY \\
   pottava/amazon-ecr-credential-helper:0.3)
-echo \$SECRET | grep Secret
+RESPONSE=\$(echo \$SECRET | grep Secret)
+if [ -z \$RESPONSE ]; then
+  echo "{\\"Username\\":\\"\\",\\"Secret\\":\\"\\"}"
+else
+  echo \$RESPONSE
+fi
 EOF'
 $ sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
@@ -81,7 +91,12 @@ SECRET=\$(docker --config /dev/null run --rm \\
   -e REGISTRY=\$(cat -) \\
   -v $HOME/.aws/credentials:/root/.aws/credentials \\
   pottava/amazon-ecr-credential-helper:0.3)
-echo \$SECRET | grep Secret
+RESPONSE=\$(echo \$SECRET | grep Secret)
+if [ -z \$RESPONSE ]; then
+  echo "{\\"Username\\":\\"\\",\\"Secret\\":\\"\\"}"
+else
+  echo \$RESPONSE
+fi
 EOF'
 $ sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
@@ -90,7 +105,7 @@ If you got an error like `Error getting the version of the configured credential
 
 ```sh
 #!/bin/sh
-VERSION=latest
+VERSION=0.3
 case $1 in
     version)
         echo $VERSION
@@ -119,14 +134,14 @@ esac
 
 ## Usage
 
-Set environment variables if you needed.  
+Set environment variables if you needed.
 
 ```console
 export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 export AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ```
 
-There is no need to use `eval "$(aws ecr get-login)"`.  
+There is no need to use `eval "$(aws ecr get-login)"`.
 
 * `docker push 123457689012.dkr.ecr.us-east-1.amazonaws.com/my-repo:tag`
 * `docker pull 123457689012.dkr.ecr.us-east-1.amazonaws.com/my-repo:tag`
