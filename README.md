@@ -46,7 +46,7 @@ $ docker run --rm \
 ```sh
 $ sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
-SECRET=\$(docker run --rm \\
+SECRET=\$(docker --config /dev/null run --rm \\
   -e METHOD=\$1 \\
   -e REGISTRY=\$(cat -) \\
   pottava/amazon-ecr-credential-helper:0.3)
@@ -60,7 +60,7 @@ $ sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```sh
 $ sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
-SECRET=\$(docker run --rm \\
+SECRET=\$(docker --config /dev/null run --rm \\
   -e METHOD=\$1 \\
   -e REGISTRY=\$(cat -) \\
   -e AWS_ACCESS_KEY_ID \\
@@ -76,7 +76,7 @@ $ sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```sh
 $ sudo sh -c 'cat << EOF > /usr/bin/docker-credential-ecr-login
 #!/bin/sh
-SECRET=\$(docker run --rm \\
+SECRET=\$(docker --config /dev/null run --rm \\
   -e METHOD=\$1 \\
   -e REGISTRY=\$(cat -) \\
   -v $HOME/.aws/credentials:/root/.aws/credentials \\
