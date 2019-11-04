@@ -86,6 +86,29 @@ EOF'
 $ sudo chmod +x /usr/bin/docker-credential-ecr-login
 ```
 
+If you got an error like `Error getting the version of the configured credential helper`, try something like the following. (Thanks, @rodlogic!)
+
+```sh
+#!/bin/sh
+VERSION=latest
+case $1 in
+    version)
+        echo $VERSION
+        ;;
+    get)
+        SECRET=$(docker run --rm \
+            -e METHOD=$1 \
+            -e REGISTRY=$(cat -) \
+            pottava/amazon-ecr-credential-helper:$VERSION)
+        echo $SECRET | grep Secret
+        ;;
+    *)
+        echo 'Unexpected command $1'
+        exit 1
+        ;;
+esac
+```
+
 ### 3. Set contents of your ~/.docker/config.json to be
 
 ```json
