@@ -1,7 +1,7 @@
 # Amazon ECR credential-helper
 # @see https://github.com/awslabs/amazon-ecr-credential-helper
 
-FROM alpine:3.7
+FROM alpine:3.14
 
 # Commit at Dec 15, 2017, 02:55 AM
 ENV APP_VERSION=d404d9f29edf983ea0636327bea1e384856015a9 \
