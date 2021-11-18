@@ -1,7 +1,7 @@
 # Amazon ECR credential-helper
 # @see https://github.com/awslabs/amazon-ecr-credential-helper
 
-FROM alpine:3.10 AS certs
+FROM alpine:3.13.7 AS certs
 RUN apk --no-cache add "ca-certificates=20190108-r0"
 
 FROM golang:1.12.7-alpine3.10 AS build
@@ -15,7 +15,7 @@ ENV CGO_ENABLED=0 \
 RUN go build -ldflags "-s -w" -installsuffix cgo -a -o /ecr-login \
     ./ecr-login/cli/docker-credential-ecr-login
 
-FROM alpine:3.10
+FROM alpine:3.13.7
 ENV REGISTRY=123457689012.dkr.ecr.us-east-1.amazonaws.com \
     METHOD=get
 COPY --from=certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
